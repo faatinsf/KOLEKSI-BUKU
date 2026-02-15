@@ -1,4 +1,4 @@
-@extends('layouts.main.main')
+login-app/resources/views/user/dashboard.blade.php@extends('layouts.main.main')
 
 @section('title', 'Dashboard')
 

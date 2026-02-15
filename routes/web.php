@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BukuController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -22,19 +23,34 @@ Route::middleware(['auth','role:admin'])
         Route::resource('kategori', KategoriController::class);
 });
 
+Route::middleware(['auth','role:user'])
+    ->prefix('user')
+    ->name('user.')
+    ->group(function () {
 
-Route::middleware(['auth','role:user'])->group(function () {
-    Route::get('/user/dashboard', function () {
-        return view('user.dashboard');
-    });
+        Route::get('/dashboard', function () {
+            return view('user.dashboard');
+        })->name('dashboard');
 
-    
+        Route::resource('buku', BukuUserController::class);
+        Route::resource('kategori', KategoriUserController::class);
+});
+       Route::middleware(['auth','role:user'])->group(function () {
+         Route::get('/user/dashboard', [DashboardController::class, 'userDashboard'])
+              ->name('user.dashboard'); 
+        });
+
+
+Route::get('/', function () {
+    if (!auth()->check()) {
+        return view('welcome');
+    }
+
+    return auth()->admin()->role === 'admin'
+        ? redirect()->route('admin.dashboard')
+        : redirect()->route('user.dashboard');
 });
 
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
