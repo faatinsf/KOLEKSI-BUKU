@@ -1,20 +1,23 @@
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Koleksi Buku</title>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Purple Admin</title>
+    <!-- plugins:css -->
+  <link rel="stylesheet" href="{{ asset('assets/vendors/mdi/css/materialdesignicons.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/vendors/ti-icons/css/themify-icons.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/vendors/css/vendor.bundle.base.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/vendors/font-awesome/css/font-awesome.min.css') }}">
 
-  <!-- Bootstrap 5 -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Icons -->
-  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
-
-  <!-- Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-  <!-- Custom -->
-  <link rel="stylesheet" href="{{ asset('css/app-layout.css') }}">
-
-  <link rel="icon" href="/favicon.ico">
-</head>
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="{{ asset('assets/vendors/font-awesome/css/font-awesome.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css') }}">
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}" />
+  </head>

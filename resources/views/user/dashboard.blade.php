@@ -5,18 +5,6 @@
 @section('content')
 <div class="container-fluid">
 
-    {{-- HEADER --}}
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h3 class="page-title">Dashboard User</h3>
-
-        <form method="POST" action="{{ route('logout') }}">
-            @csrf
-            <button class="btn btn-sm btn-danger">
-                Logout
-            </button>
-        </form>
-    </div>
-
     {{-- INFO CARD --}}
     <div class="row mb-4">
 

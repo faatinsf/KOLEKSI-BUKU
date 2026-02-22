@@ -79,6 +79,13 @@
                     @endif
                 </div>
 
+                <div class="mt-6">
+                   <a href="{{ route('google.redirect') }}"
+   class="flex items-center justify-center w-full px-4 py-2 border rounded-md">
+   Login dengan Google
+</a>
+
+
                 <!-- Button -->
                 <x-primary-button
                     class="w-full justify-center

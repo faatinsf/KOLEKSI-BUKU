@@ -1,40 +1,91 @@
-<nav class="navbar navbar-expand-lg fixed-top app-navbar">
-  <div class="container-fluid">
+<nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+  <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
 
-    <a class="navbar-brand fw-semibold text-white" href="{{ url('/') }}">
-      <i class="mdi mdi-book-open-page-variant me-1"></i>
-      Koleksi Buku
+    <!-- Logo -->
+    <a class="navbar-brand brand-logo" href="{{ url('/') }}">
+      <img src="{{ asset('assets/images/logo.svg') }}" alt="logo" />
     </a>
 
-    <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
-      <i class="mdi mdi-menu"></i>
+    <a class="navbar-brand brand-logo-mini" href="{{ url('/') }}">
+      <img src="{{ asset('assets/images/logo-mini.svg') }}" alt="logo" />
+    </a>
+
+  </div>
+
+  <div class="navbar-menu-wrapper d-flex align-items-stretch">
+
+    <button class="navbar-toggler align-self-center" type="button" data-toggle="minimize">
+      <span class="mdi mdi-menu"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarMain">
-
-      <form class="ms-auto me-3 d-none d-md-flex">
-        <input class="form-control form-control-sm search-input" type="search" placeholder="Cari buku...">
+    <!-- Search -->
+    <div class="search-field d-none d-md-block">
+      <form class="d-flex align-items-center h-100" action="#">
+        <div class="input-group">
+          <div class="input-group-prepend bg-transparent">
+            <i class="input-group-text border-0 mdi mdi-magnify"></i>
+          </div>
+          <input type="text" class="form-control bg-transparent border-0" placeholder="Search projects">
+        </div>
       </form>
+    </div>
 
-      <ul class="navbar-nav align-items-center">
+    <ul class="navbar-nav navbar-nav-right">
 
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle text-white d-flex align-items-center" data-bs-toggle="dropdown">
-            <i class="mdi mdi-account-circle fs-4 me-1"></i>
-            {{ Auth::user()->name ?? 'User' }}
+      <!-- Profile -->
+      <li class="nav-item nav-profile dropdown">
+        <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-bs-toggle="dropdown">
+          <div class="nav-profile-img">
+            <img src="{{ asset('assets/images/faces/face1.jpg') }}" alt="image">
+            <span class="availability-status online"></span>
+          </div>
+          <div class="nav-profile-text">
+            <p class="mb-1 text-black">{{ Auth::user()->name ?? 'User' }}</p>
+          </div>
+        </a>
+
+        <div class="dropdown-menu navbar-dropdown dropdown-menu-end">
+          <a class="dropdown-item" href="#">
+            <i class="mdi mdi-cached me-2 text-success"></i> Activity Log
           </a>
 
-          <div class="dropdown-menu dropdown-menu-end shadow-sm">
-            <form method="POST" action="{{ route('logout') }}">
-              @csrf
-              <button class="dropdown-item text-danger">
-                <i class="mdi mdi-logout me-1"></i> Logout
-              </button>
-            </form>
-          </div>
-        </li>
+          <div class="dropdown-divider"></div>
 
-      </ul>
-    </div>
+          <!-- Logout Laravel -->
+          <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <button type="submit" class="dropdown-item">
+              <i class="mdi mdi-logout me-2 text-primary"></i> Sign Out
+            </button>
+          </form>
+
+        </div>
+      </li>
+
+      <!-- Fullscreen -->
+      <li class="nav-item d-none d-lg-block full-screen-link">
+        <a class="nav-link">
+          <i class="mdi mdi-fullscreen" id="fullscreen-button"></i>
+        </a>
+      </li>
+
+      <!-- Logout Icon -->
+      <li class="nav-item nav-logout d-none d-lg-block">
+        <form method="POST" action="{{ route('logout') }}">
+          @csrf
+          <button type="submit" class="nav-link border-0 bg-transparent">
+            <i class="mdi mdi-power"></i>
+          </button>
+        </form>
+      </li>
+
+    </ul>
+
+    <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center"
+            type="button"
+            data-toggle="offcanvas">
+      <span class="mdi mdi-menu"></span>
+    </button>
+
   </div>
 </nav>

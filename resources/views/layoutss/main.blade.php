@@ -1,21 +1,26 @@
 @include('layoutss.partials.header')
+
 <body>
+  <div class="container-scroller">
 
-  @include('layoutss.partials.navbar')
+    {{-- Navbar --}}
+    @include('layoutss.partials.navbar')
 
-  <div class="app-wrapper">
+    <div class="container-fluid page-body-wrapper">
 
-    @include('layoutss.partials.sidebar')
+      {{-- Sidebar --}}
+      @include('layoutss.partials.sidebar')
 
-    <main class="app-content">
-      @yield('content')
+      {{-- Main Content --}}
+      <div class="main-panel">
+        <div class="content-wrapper">
+          @yield('content')
+        </div>
 
-      @include('layoutss.partials.footer')
-    </main>
-
+        {{-- Footer --}}
+        @include('layoutss.partials.footer')
+      </div>
+    </div>
   </div>
-
-</body>
-
 
 @include('layoutss.partials.scripts')

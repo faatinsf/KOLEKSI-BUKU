@@ -28,6 +28,32 @@
       </a>
     </li>
 
+            <!-- Dokumen -->
+    <li class="nav-item">
+      <a class="nav-link" data-bs-toggle="collapse" href="#dokumen" aria-expanded="false">
+        <span class="menu-title">Dokumen</span>
+        <i class="menu-arrow"></i>
+         <i class="mdi mdi-book menu-icon"></i>
+      </a>
+
+      <div class="collapse" id="dokumen">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('user.pdf.sertifikat') }}">
+              Download Sertifikat (PDF)
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('user.pdf.undangan') }}">
+              Download Undangan (PDF)
+            </a>
+          </li>
+        </ul>
+      </div>
+    </li>
+
+
+    
     <!-- Buku -->
     <li class="nav-item">
       <a class="nav-link" data-bs-toggle="collapse" href="#buku" aria-expanded="false">
@@ -38,14 +64,14 @@
       <div class="collapse" id="buku">
         <ul class="nav flex-column sub-menu">
           <li class="nav-item">
-            <a class="nav-link" href="#">Data Buku</a>
+            <a class="nav-link sub {{ request()->routeIs('user.buku.index') ? 'active' : '' }}" 
+               href="{{ route('user.buku.index') }}">Data Buku</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Tambah Buku</a>
-          </li>
+         
         </ul>
       </div>
     </li>
+
 
     <!-- Kategori -->
     <li class="nav-item">
@@ -56,22 +82,12 @@
       <div class="collapse" id="kategori">
         <ul class="nav flex-column sub-menu">
           <li class="nav-item">
-            <a class="nav-link" href="#">Data Kategori</a>
+            <a class="nav-link sub {{ request()->is('user/datakategori') ? 'active' : '' }}" href="{{ route('user.kategori.index') }}">Data Kategori</a>
           </li>
         </ul>
       </div>
     </li>
 
-    <!-- Logout -->
-    <li class="nav-item">
-      <form method="POST" action="{{ route('logout') }}">
-        @csrf
-        <button type="submit" class="nav-link border-0 bg-transparent text-start w-100">
-          <span class="menu-title">Logout</span>
-          <i class="mdi mdi-logout menu-icon"></i>
-        </button>
-      </form>
-    </li>
-
+    
   </ul>
 </nav>
