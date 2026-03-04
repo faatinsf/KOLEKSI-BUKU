@@ -22,7 +22,7 @@
 
     <!-- Dashboard -->
     <li class="nav-item">
-      <a class="nav-link" href="{{ url('/user/dashboard') }}">
+      <a class="nav-link" href="{{ url('/admin/dashboard') }}">
         <span class="menu-title">Dashboard</span>
         <i class="mdi mdi-home menu-icon"></i>
       </a>
@@ -76,6 +76,22 @@
       </div>
 
     </li>
+
+            <!-- barang -->
+    <li class="nav-item">
+      <a class="nav-link" data-bs-toggle="collapse" href="#barang" aria-expanded="false">
+        <span class="menu-title">Barang</span>
+        <i class="mdi mdi-contacts menu-icon"></i>
+      </a>
+      <div class="collapse" id="barang">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item">
+            <a class="nav-link sub {{ request()->is('admin/barang') ? 'active' : '' }}" href="{{ route('admin.barang.index') }}">Data Barang</a>
+          </li>
+        </ul>
+      </div>
+    </li>
+
 
     <li class="nav-item mt-auto">
       <form method="POST" action="{{ route('logout') }}">

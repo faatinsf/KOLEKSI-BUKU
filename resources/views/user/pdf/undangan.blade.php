@@ -27,7 +27,7 @@
 
     <div class="content">
         <p>Nomor : 001/FVV/UND/I/2026</p>
-        <p>Perihal : Undangan</p>
+        <p>Perihal : Undangan 2</p>
 
         <br>
 

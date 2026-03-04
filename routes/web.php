@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\Auth\OtpController;
+use App\Http\Controllers\BarangController;
+use App\Http\Controllers\BarangUserController;
 use App\Http\Controllers\BukuController;
 use App\Http\Controllers\BukuUserController;
 use App\Http\Controllers\DashboardController;
@@ -11,7 +13,6 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\User\PdfController;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Auth;
-
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -78,7 +79,10 @@ Route::middleware(['auth', 'role:admin'])
 
         Route::resource('buku', BukuController::class);
         Route::resource('kategori', KategoriController::class);
+
+        Route::resource('barang', BarangController::class);
 });
+
 
 /*
 |--------------------------------------------------------------------------
@@ -101,6 +105,20 @@ Route::middleware(['auth', 'role:user'])
 
         Route::get('/user/pdf/undangan', [PdfController::class, 'undangan'])
             ->name('pdf.undangan');
+        
+        Route::resource('barang', BarangUserController::class)
+            ->only(['index']);
+
+        // nanti buat TNJ PDF di sini
+        Route::post('/barang/cetak', [BarangUserController::class, 'cetak'])
+            ->name('barang.cetak');
+
+        Route::get('/barang/pilih', [BarangUserController::class, 'pilih'])
+            ->name('barang.pilih');
+
+        Route::post('/barang/proses', [BarangUserController::class, 'proses'])
+            ->name('barang.proses');
+
 });
 
 /*

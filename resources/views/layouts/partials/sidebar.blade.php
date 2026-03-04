@@ -88,6 +88,27 @@
       </div>
     </li>
 
+        <!-- barang -->
+    <li class="nav-item">
+      <a class="nav-link" data-bs-toggle="collapse" href="#barang" aria-expanded="false">
+        <span class="menu-title">Barang</span>
+        <i class="mdi mdi-contacts menu-icon"></i>
+      </a>
+      <div class="collapse" id="barang">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item">
+            <a class="nav-link sub {{ request()->is('user/barang') ? 'active' : '' }}" href="{{ route('user.barang.index') }}">Data Barang</a>
+          </li>
+        </ul>
+      </div>
+      <div class="collapse" id="barang">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item">
+            <a class="nav-link sub {{ request()->is('user/barang') ? 'active' : '' }}" href="{{ route('user.barang.pilih') }}">Cetak tag harga</a>
+          </li>
+        </ul>
+      </div>
+    </li>
     
   </ul>
 </nav>

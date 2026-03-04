@@ -24,3 +24,9 @@
   </div>
 
 @include('layoutss.partials.scripts')
+
+@include('layoutss.partials.scripts')
+
+@yield('scripts')
+</body>
+</html>
