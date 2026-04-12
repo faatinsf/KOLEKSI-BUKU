@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Barang;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Picqer\Barcode\BarcodeGeneratorPNG;
 
 class BarangUserController extends Controller
 {
@@ -14,40 +15,46 @@ class BarangUserController extends Controller
         return view('user.barang.index', compact('barang'));
     }
 
+
+ // ganti SVG → PNG
+
 public function cetak(Request $request)
 {
-    $request->validate([
-        'barang' => 'required|array',
-        'x' => 'required|integer|min:1|max:5',
-        'y' => 'required|integer|min:1|max:8',  
-    ]);
+    $barangIds = $request->input('barang', []);
+    $x = (int) $request->input('x', 1);
+    $y = (int) $request->input('y', 1);
 
-    $barangDipilih = Barang::whereIn('id_barang', $request->barang)->get();
+    $barangDipilih = \App\Models\Barang::whereIn('id_barang', $barangIds)->get();
 
-    $startIndex = (($request->y - 1) * 5) + ($request->x - 1);
-
-    $labels = array_fill(0, 40, null);
-
-    foreach ($barangDipilih as $i => $barang) {     
-        if ($startIndex + $i < 40) {
-            $labels[$startIndex + $i] = $barang;
-        }
+    // Generate barcode PNG → base64
+    $generator = new BarcodeGeneratorPNG();
+    $barcodes  = [];
+    foreach ($barangDipilih as $b) {
+        $png = $generator->getBarcode(
+            (string) $b->id_barang,
+            $generator::TYPE_CODE_128,
+            1,   // lebar bar
+            30   // tinggi bar
+        );
+        $barcodes[$b->id_barang] = 'data:image/png;base64,' . base64_encode($png);
     }
 
-  
-        $pdf = Pdf::loadView('user.barang.pdf', compact('labels'))
-          ->setPaper([0,0, 210 * 2.83465, 169 * 2.83465], 'portrait')
-          ->setOptions([
-              'isHtml5ParserEnabled' => true,
-              'isRemoteEnabled' => true,
-              'margin_top' => 0,
-              'margin_bottom' => 0,
-              'margin_left' => 0,
-             'margin_right' => 0,
-          ]);
+    // Hitung posisi mulai
+    $startIndex = (($y - 1) * 5) + ($x - 1);
+    $labels = [];
+    for ($i = 0; $i < $startIndex; $i++) {
+        $labels[] = null;
+    }
+    foreach ($barangDipilih as $b) {
+        $labels[] = $b;
+    }
 
+    $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('user.barang.tag-harga', [
+        'labels'   => $labels,
+        'barcodes' => $barcodes,
+    ])->setPaper([0, 0, 595, 475], 'portrait');
 
-    return $pdf->stream('tag-harga-tnj-108.pdf');
+    return $pdf->stream('tag-harga.pdf');
 }
     public function pilih()
     {

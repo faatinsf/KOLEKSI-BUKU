@@ -74,6 +74,7 @@
           </li>
         </ul>
       </div>
+      
 
     </li>
 
@@ -91,7 +92,38 @@
         </ul>
       </div>
     </li>
+    <!-- modul barang -->
+    <li class="nav-item">
+      <a class="nav-link" data-bs-toggle="collapse" href="#modulbarang" aria-expanded="false">
+        <span class="menu-title">Modul Tambah Barang</span>
+        <i class="mdi mdi-contacts menu-icon"></i>
+      </a>
 
+<div class="collapse" id="modulbarang">
+  <ul class="nav flex-column sub-menu">
+
+    <li class="nav-item">
+      <a class="nav-link sub {{ request()->is('admin/modulbarang') ? 'active' : '' }}" 
+        href="{{ route('admin.modulbarang.index') }}">
+        Halaman 1
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link sub {{ request()->is('admin/modulbarang/halaman2') ? 'active' : '' }}" 
+        href="{{ route('admin.modulbarang.halaman2') }}">
+        Halaman 2
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link sub {{ request()->is('admin/modulbarang/halaman3') ? 'active' : '' }}" 
+        href="{{ route('admin.modulbarang.halaman3') }}">
+        Halaman 3
+      </a>
+    </li>
+  </ul>
+</div>
+    </li>
 
     <li class="nav-item mt-auto">
       <form method="POST" action="{{ route('logout') }}">

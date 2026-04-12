@@ -88,6 +88,8 @@
       </div>
     </li>
 
+
+
         <!-- barang -->
     <li class="nav-item">
       <a class="nav-link" data-bs-toggle="collapse" href="#barang" aria-expanded="false">
@@ -108,7 +110,79 @@
           </li>
         </ul>
       </div>
-    </li>
+
     
+      <li class="nav-item">
+      <a class="nav-link" data-bs-toggle="collapse" href="#ajaxAxiosMenu" aria-expanded="false">
+      <i class="menu-icon mdi mdi-code-tags"></i>
+      <span class="menu-title">AJAX AXIOS</span>
+      <i class="menu-arrow"></i>
+      </a>
+
+      <div class="collapse" id="ajaxAxiosMenu">
+      <ul class="nav flex-column sub-menu">
+
+      <li class="nav-item">
+      <a class="nav-link" href="{{ route('case1.ajax') }}">
+      Case 1 - AJAX
+      </a>
+      </li>
+
+      <li class="nav-item">
+      <a class="nav-link" href="{{ route('case1.axios') }}">
+      Case 1 - AXIOS
+      </a>
+      </li>
+        <li class="nav-item">
+        <a class="nav-link" href="{{ route('case2.ajax') }}">
+        Case 2 - POS AJAX
+        </a>
+        </li>
+
+        <li class="nav-item">
+        <a class="nav-link" href="{{ route('case2.axios') }}">
+        Case 2 - POS AXIOS
+        </a>
+        </li>
+
+      </ul>
+      </div>
+      </li>
+
+      {{-- Customer --}}
+<li class="nav-item">
+  <a class="nav-link" data-bs-toggle="collapse" href="#customer" aria-expanded="false">
+    <span class="menu-title">Customer</span>
+    <i class="menu-arrow"></i>
+    <i class="mdi mdi-account-multiple menu-icon"></i>
+  </a>
+  <div class="collapse" id="customer">
+    <ul class="nav flex-column sub-menu">
+      <li class="nav-item">
+        <a class="nav-link sub {{ request()->routeIs('user.customer.index') ? 'active' : '' }}"
+           href="{{ route('user.customer.index') }}">Data Customer</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link sub {{ request()->routeIs('user.customer.tambah1') ? 'active' : '' }}"
+           href="{{ route('user.customer.tambah1') }}">Tambah Customer 1 (Blob)</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link sub {{ request()->routeIs('user.customer.tambah2') ? 'active' : '' }}"
+           href="{{ route('user.customer.tambah2') }}">Tambah Customer 2 (File)</a>
+      </li>
+    </ul>
+  </div>
+</li>
+
+{{-- QR Code --}}
+<li class="nav-item">
+  <a class="nav-link {{ request()->routeIs('user.qrcode.*') ? 'active' : '' }}"
+     href="{{ route('user.qrcode.index') }}">
+    <span class="menu-title">Generate QR Code</span>
+    <i class="mdi mdi-qrcode menu-icon"></i>
+  </a>
+</li>
+
+  </li>
   </ul>
 </nav>

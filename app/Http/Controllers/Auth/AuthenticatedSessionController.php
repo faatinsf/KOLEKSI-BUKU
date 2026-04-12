@@ -37,6 +37,10 @@ class AuthenticatedSessionController extends Controller
         return redirect('/user/dashboard');
     }
 
+       if ($user->role->name === 'vendor') {
+        return redirect('/vendor/dashboard');
+    }
+
     Auth::logout();
     return redirect('/login')->withErrors([
         'email' => 'Role tidak valid'
